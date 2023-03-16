@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>SafeWalk LTE Controlled Drone</title>
+    <link rel = "icon" href="images/carleton_safety.jpg" type = "image/x-icon">
+    <link rel="stylesheet" href="assets/css/gps.css">
+    <meta charset="UTF-8">
+    
+    
+</head>
+
+<body>
+    <div class="header">
+        <h1>SafeWalk LTE Controlled Drone</h1>
+        <h2>Group 45</h2>
+    </div>
+
+    <div id="fields">
+        <fieldset>
+            <legend><span>Personal information</span></legend>
+            <label>First Name:</label>
+            <input type="text" id="fname" name="first_name"><br><br>
+            <label>Last Name:</label>
+            <input type="text" id="lname" name="last_name"><br><br>
+            <label>Student #:</label>
+            <input type="number" id="studentID" name="studentID" placeholder="101******"><br>
+        </fieldset>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="wrapper">
+        <button id="button">Share Location</button>          
+    </div>
+
+     <p id="displayCoords"></p>
+
+    <script>
+        var display = document.getElementById('displayCoords');
+        var button = document.getElementById('button');
+        button.addEventListener("click", getLocation());
+
+        function initMap() {
+            var location = {lat:45.3876, lng:-75.6960};
+            var map = new google.maps.Map(document.getElementById('map'),{
+            zoom: 4,
+            center: location
+            });
+        }
+
+        function getLocation(){
+            navigator.geolocation.getCurrentPosition(position => {
+                const{latitude, longitude, altitude} = position.coords;
+                display.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br>Altitude: " + position.coords.altitude;
+            })
+        }
+    </script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8cjyoA0pLqRw4skJkkdtQ_Ae5-engzMk&callback=initMap"></script>
+    
+</body><br><br>
+
+<footer>
+    <P>Sourced from "Making Websites Location Aware with HTML5 Geolocation" <a href="https://webdesign.tutsplus.com/articles/making-websites-location-aware-with-html5-geolocation--webdesign-10495">webdesign.tutsplus.com</a></P>
+    <P> Aaron Lumsden <a href="https://aaronlumsden.com/">aaronlumsden.com</a></P>
+</footer>
+
+</html>
